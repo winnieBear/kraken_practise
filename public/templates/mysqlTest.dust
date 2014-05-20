@@ -1,0 +1,10 @@
+{>"layouts/master" /}
+
+{<body}
+    <h1>{@pre type="content" key="greeting"/}</h1>
+    <ul>
+    {#users}
+    	<li>{first_name}.{last_name},{age}{~n}</li>
+    {/users}
+    </ul>
+{/body}

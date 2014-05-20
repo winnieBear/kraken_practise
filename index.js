@@ -2,11 +2,15 @@
 
 
 var kraken = require('kraken-js'),
+    mysql = require('./lib/dbMysql'),
+    express = require('express'),
     app = {};
 
 
 app.configure = function configure(nconf, next) {
-    // Async method run on startup.
+    // Fired when an app configures itself
+    //Configure the database
+    mysql.init(nconf.get('mysqlConfig'));
     next(null);
 };
 
