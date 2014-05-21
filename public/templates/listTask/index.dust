@@ -1,0 +1,48 @@
+{>"layouts/master" /}
+
+{<body}
+    <h1>hello,{controller}</h1>
+    <h2>任务列表<span>{visit}</span></h2>
+    <div>
+	    <table>
+			    <thead>
+			        <th>id</th>
+			        <th>jira_id</th>
+			        <th>build_id</th>
+			        <th>user</th>
+			        <th>状态</th>
+			        <th>优先级</th>
+			        <th>创建时间</th>
+			        <th>操作</th>
+			    </thead>
+			    <tbody>
+			    	{#taskList}
+			        <tr>
+			            <td>{id}</td>
+			            <td>{jira_id}</td>
+			            <td>{build_id}</td>
+			            <td>{email}</td>
+			            <td>{state}</td>
+			            <td>{grade}</td>
+			            <td>{create_time}</td>
+			            <td>
+			            	<button>提高优先级</button>
+			            	<button>暂停任务</button>
+			            	<button>取消任务</button>
+			            	<button>恢复任务</button>
+			            </td>
+			        </tr>
+			        {~n}
+			      {/taskList}
+			    </tbody>
+			</table>	
+    </div>
+    <div>
+    	<button>
+    		<a href="/listTask/toAdd/">新建任务</a>
+    	</button>
+	    <button>
+    		<a href="/listTask/stopAll/">暂停全部任务</a>
+    	</button>	
+    </div>
+{/body}

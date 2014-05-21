@@ -1,0 +1,6 @@
+{>"layouts/master" /}
+
+{<body}
+    <h1>{#err}{msg}{{err/}</h1>
+    <p>{#err}{$desc}{/err}</>
+{/body}

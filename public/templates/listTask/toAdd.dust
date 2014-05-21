@@ -1,0 +1,15 @@
+{>"layouts/master" /}
+
+{<body}
+    <h1>hello,{controller}</h1>
+    <h2>新增任务</h2>
+    <div>
+	   	<form action="/listTask/add" method="post">
+				<input type="text" name="jira_id" value="" placeholder="请输入JIRA-ID，例如FC-100">
+				<a id="goto_jira_page" href="about:blank" disabled>查看需求</a>
+				<input type="text" name="build_id" value="" placeholder="请输入build序号,例如1388">
+				<input type="hidden" name="_csrf" value="{_csrf}">
+				<input id="btn_createTask" type="submit" value="创建">
+			</form>
+    </div>
+{/body}
