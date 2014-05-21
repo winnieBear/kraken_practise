@@ -1,18 +1,20 @@
 'use strict';
 
 
-var IndexModel = require('../models/index');
+var onlineTaskModel = require('../models/onlineTask');
 
 
-module.exports = function (app) {
+module.exports = function(app) {
 
-    var model = new IndexModel();
+    var taskMod = new onlineTaskModel();
 
 
-    app.get('/', function (req, res) {
-        
-        res.render('index', model);
-        
-    });
+    app.get('/', function(req, res) {
+        var data = {
+            'controller': 'index',
+        };
+        res.render('index', data);
+
+    }); //over app.get('/',..)
 
 };
