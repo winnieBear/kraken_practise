@@ -7,6 +7,13 @@
 </head>
 <body>
 <div id="wrapper">
+	 <h1>{controller}</h1>
+   <h1>{?userinfo}
+   		hello,{#userinfo}{username}{/userinfo} <a href="/user/logout">退出</a>
+			{:else}
+			<a href="/user/login">请登录</a>
+			{/userinfo}
+   </h1>
     {+body /}
 </div>
 <script src="/js/app.js"></script>

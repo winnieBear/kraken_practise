@@ -1,0 +1,14 @@
+{>"layouts/master" /}
+
+{<body}
+    <h2>{msg}</h2>
+    <div>
+	   	<form action="/user/login" method="post">
+				<input type="text" name="email" value="" placeholder="请输入email地址，例如xxx@58.com">
+				<input type="password" name="password" value="" placeholder="请输入登录密码">
+				<input type="hidden" name="_csrf" value="{_csrf}">
+				<input id="btn_login" type="submit" value="登录">
+				<button id="btn_reg"><a href="/user/reg">注册</a></button>
+			</form>
+    </div>
+{/body}

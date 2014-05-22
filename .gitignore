@@ -3,4 +3,6 @@
 .build/
 node_modules/
 public/components/
+test/
+data/
 *.iml

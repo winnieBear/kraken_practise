@@ -19,7 +19,8 @@
     "nconf": "^0.6.8",
     "mysql-warp":"0.2.4",
     "async":"0.9.0",
-    "connect-file-store":"0.0.3"
+    "connect-file-store":"0.0.3",
+    "MD5":"1.2.1"
   },
   "devDependencies": {
     "grunt": "^0.4.1",

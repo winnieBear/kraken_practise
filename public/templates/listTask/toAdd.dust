@@ -1,7 +1,6 @@
 {>"layouts/master" /}
 
 {<body}
-    <h1>hello,{controller}</h1>
     <h2>新增任务</h2>
     <div>
 	   	<form action="/listTask/add" method="post">

@@ -2,7 +2,7 @@
 
 
 var onlineTaskModel = require('../models/onlineTask');
-
+var user = require('../lib/user');
 
 module.exports = function(app) {
 
@@ -12,25 +12,19 @@ module.exports = function(app) {
         var data = {
             'controller': 'listTask',
         };
-        var sess = req.session;
-        console.log('+ begin ' + req.url);
-        if (sess.visit) {
-            sess.visit++;
-        } else {
-            sess.visit = 1;
-        }
-        data.visit = sess.visit;
-        
-        taskMod.findAll(function(err, rows) {
 
+        user.init(req.session)
+            .needLogin(req,res);
+
+        data.userinfo = user.getUser();
+
+        taskMod.findAll(function(err, rows) {
             if (err) {
                 res.send(503, err);
             } else {
                 data.taskList = rows;
                 res.render('listTask/index', data);
             } //end else
-
-
         }); //end findAll
 
     }); // end apt.get('listTask')
@@ -40,13 +34,29 @@ module.exports = function(app) {
         var data = {
             'controller': 'listTask/toAdd',
         };
+        user.init(req.session)
+            .needLogin(req,res);
+
+        data.userinfo = user.getUser();
+
         res.render('listTask/toAdd', data);
     }); // end apt.get('/listTask/toAdd')
 
+    //调整优先级
+    app.post('/listTask/adjGrade',function(req,res){
+        //  get input data
+        //  
+    });
     app.post('/listTask/add', function(req, res) {
+        var data = {
+            'controller': 'listTask/toAdd',
+        };
+        user.init(req.session)
+            .needLogin(req,res);
 
+        data.userinfo = user.getUser();
         //get input data
-        var email = 'test@58.com';
+        var email = data.userinfo.email;
         var jira_id = req.param('jira_id'),
             build_id = parseInt(req.param('build_id'), 10);
         //insert    

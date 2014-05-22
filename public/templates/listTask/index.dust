@@ -1,7 +1,6 @@
 {>"layouts/master" /}
 
 {<body}
-    <h1>hello,{controller}</h1>
     <h2>任务列表<span>{visit}</span></h2>
     <div>
 	    <table>
