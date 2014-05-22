@@ -5,16 +5,16 @@
             "500": "errors/500",
             "503": "errors/503"
         },
-    "session": {
-        "module": "connect-file-store",
-        "secret": "Rawrrrr!",
-        "config":{
+        "session": {
+            "module": "connect-file-store",
+            "secret": "Rawrrrr!",
+            "config":{
         		"path":"path:./data/",
         		"useAsync":true,
-        		"reapInterval":5000,
-        		"maxAge":3600
+        		"reapInterval":600000,
+        		"maxAge":3600000
         	}
-    		}
+		}
         //      "appsec": {
         //        "csrf": true,
         //        "csp": false,
