@@ -2,7 +2,6 @@
 
 
 var UserModel = require('../models/user');
-var user = require('../lib/user');
 var md5 = require('MD5');
 var base64 = require('../lib/base64');
 
@@ -18,7 +17,7 @@ module.exports = function(app) {
         var data = {
             controller: '/user/reg'
         };
-        user.init(req.session);
+        var user = res.locals.login.user;
         var retu = '/user';
         if (user.isLogin()) {
             res.redirect(retu);
@@ -27,11 +26,11 @@ module.exports = function(app) {
         } //end else
     });
 
-		app.post('/user/reg', function(req, res) {
+    app.post('/user/reg', function(req, res) {
         var data = {
             controller: '/user/reg'
         };
-        user.init(req.session);
+        var user = res.locals.login.user;
         var retu = '/user';
         if (user.isLogin()) {
             res.redirect(retu);
@@ -64,7 +63,7 @@ module.exports = function(app) {
             controller: '/user/login'
         };
         //如果没有登录，展示登录页面；否则跳转到retu url
-        user.init(req.session);
+        var user = res.locals.login.user;
         if (user.isLogin()) {
             var retu;
             if (req.param('retu')) {
@@ -74,26 +73,27 @@ module.exports = function(app) {
             }
             res.redirect(retu);
         } else {
+            debugger;
             res.render('user/login', data);
         }//end else
     });
 
-		app.get('/user/logout', function(req, res) {
+    app.get('/user/logout', function(req, res) {
         var data = {
             controller: '/user/logout'
         };
         //如果没有登录，展示登录页面；否则跳转到retu url
-        user.init(req.session).logout();
+        res.locals.login.user.logout();
         var retu = '/';
         res.redirect(retu);
     });
 
-    app.post('/user/login', function(req, res) {
+    app.post('/user/login', function(req, res,next) {
         var data = {
             controller: '/user/login'
         };
         //如果没有登录，展示登录页面；否则跳转到retu url
-        user.init(req.session);
+        var user = res.locals.login.user;
         var retu;
         if (req.param('retu')) {
             retu = base64.decode(req.param('retu'));
@@ -115,7 +115,9 @@ module.exports = function(app) {
 						limit:1
 	        },function(err,rows){
 	        	if(err){
-	        		console.log(err);
+                    //err.message = "userMod.find fail:"+err.toString();
+                    debugger;
+                    next(err);
 	        	}else{
 	        		if(rows.password === password){
 	        			//login success,write session

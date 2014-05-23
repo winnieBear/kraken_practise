@@ -8,13 +8,17 @@
         "session": {
             "module": "connect-file-store",
             "secret": "Rawrrrr!",
-            "config":{
-        		"path":"path:./data/",
-        		"useAsync":true,
-        		"reapInterval":600000,
-        		"maxAge":3600000
-        	}
-		}
+            "config": {
+                "path": "path:./data/",
+                "useAsync": true,
+                "reapInterval": 600000,
+                "maxAge": 3600000
+            }
+        },
+        "static": {
+            "srcRoot": "path:./public",
+            "rootPath": "path:./.build"
+        }
         //      "appsec": {
         //        "csrf": true,
         //        "csp": false,

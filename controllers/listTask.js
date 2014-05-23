@@ -2,7 +2,6 @@
 
 
 var onlineTaskModel = require('../models/onlineTask');
-var user = require('../lib/user');
 
 module.exports = function(app) {
 
@@ -13,8 +12,8 @@ module.exports = function(app) {
             'controller': 'listTask',
         };
 
-        user.init(req.session)
-            .needLogin(req,res);
+       var user = res.locals.login.user;
+       user.needLogin(req,res);
 
         data.userinfo = user.getUser();
 
@@ -34,8 +33,8 @@ module.exports = function(app) {
         var data = {
             'controller': 'listTask/toAdd',
         };
-        user.init(req.session)
-            .needLogin(req,res);
+       var user = res.locals.login.user;
+       user.needLogin(req,res);
 
         data.userinfo = user.getUser();
 
@@ -51,8 +50,8 @@ module.exports = function(app) {
         var data = {
             'controller': 'listTask/toAdd',
         };
-        user.init(req.session)
-            .needLogin(req,res);
+       var user = res.locals.login.user;
+       user.needLogin(req,res);
 
         data.userinfo = user.getUser();
         //get input data

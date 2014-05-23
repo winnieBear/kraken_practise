@@ -1,6 +1,5 @@
 'use strict';
 
-var user = require('../lib/user');
 var onlineTaskModel = require('../models/onlineTask');
 
 
@@ -10,11 +9,10 @@ module.exports = function(app) {
 
 
     app.get('/', function(req, res) {
-        debugger;
         var data = {
-            'controller': 'index',
+            'controller': 'index'
         };
-        user.init(req.session);
+        var user = res.locals.login.user;
         if(user.isLogin()){
             data.userinfo = user.getUser();
         } 
