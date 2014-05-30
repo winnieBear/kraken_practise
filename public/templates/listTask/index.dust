@@ -24,11 +24,11 @@
 			            <td>{state}</td>
 			            <td>{grade}</td>
 			            <td>{create_time}</td>
-			            <td>
-			            	<button>提高优先级</button>
-			            	<button>暂停任务</button>
-			            	<button>取消任务</button>
-			            	<button>恢复任务</button>
+			            <td class="btn_wrapper" data-tid="{id}">
+			            	<button data-id="adjGrade">提高优先级</button>
+			            	<button data-id="stopTask" >暂停任务</button>
+			            	<button data-id="cancelTask">取消任务</button>
+			            	<button data-id="resumeTask">恢复任务</button>
 			            </td>
 			        </tr>
 			        {~n}
@@ -44,4 +44,96 @@
     		<a href="/listTask/stopAll/">暂停全部任务</a>
     	</button>	
     </div>
+
 {/body}
+
+{<foot_script}
+<script>
++function ($) {
+  'use strict';
+	
+  $('.btn_wrapper').on('click', '[data-id="adjGrade"]', function(e){
+  	var changeGrade = 5,taskId = $(this).parent().attr('data-tid');
+  	$.ajax({
+	  	url:'/listTask/adjGrade',
+	  	type:'get',
+	  	data:{
+	  		taskId:taskId,
+	  		changeGrade:changeGrade
+	  	},
+	  	success:function(data){
+	  		if(data.status == 1){
+	  			alert(data.msg);
+	  		}else{
+	  			location.reload();
+	  		}
+	  	},
+	  	error:function(){
+	  		console.log(arguments);
+	  	}
+
+  	});
+  }).on('click', '[data-id="stopTask"]', function(e){
+  	var taskId = $(this).parent().attr('data-tid');
+  	$.ajax({
+	  	url:'/listTask/stop',
+	  	type:'get',
+	  	data:{
+	  		taskId:taskId
+	  	},
+	  	success:function(data){
+	  		if(data.status == 1){
+	  			alert(data.msg);
+	  		}else{
+	  			location.reload();
+	  		}
+	  	},
+	  	error:function(){
+	  		console.log(arguments);
+	  	}
+  	});
+  }).on('click', '[data-id="resumeTask"]', function(e){
+  	var taskId = $(this).parent().attr('data-tid');
+  	$.ajax({
+	  	url:'/listTask/resume',
+	  	type:'get',
+	  	data:{
+	  		taskId:taskId
+	  	},
+	  	success:function(data){
+  			if(data.status == 1){
+	  			alert(data.msg);
+	  		}else{
+	  			location.reload();
+	  		}
+	  	},
+	  	error:function(){
+	  		console.log(arguments);
+	  	}
+  	});
+  }).on('click', '[data-id="cancelTask"]', function(e){
+  	var taskId = $(this).parent().attr('data-tid');
+  	$.ajax({
+	  	url:'/listTask/cancel',
+	  	type:'get',
+	  	data:{
+	  		taskId:taskId
+	  	},
+	  	success:function(data){
+	  		if(data.status == 1){
+	  			alert(data.msg);
+	  		}else{
+	  			location.reload();
+	  		}
+	  	},
+	  	error:function(){
+	  		console.log(arguments);
+	  	}
+  	});
+  })
+
+}(jQuery);
+
+
+</script>
+{/foot_script}

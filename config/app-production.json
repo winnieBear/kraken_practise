@@ -18,7 +18,7 @@
                 "helpers": null,
                 "stream": false
             }
-        },
+        }/*,
 
         "dust": {
             "module": "adaro",
@@ -26,7 +26,7 @@
                 "helpers": null,
                 "stream": false
             }
-        }
+        }*/
     },
     "express": {
         "x-powered-by": false,
